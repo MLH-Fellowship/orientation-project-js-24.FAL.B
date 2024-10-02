@@ -1,5 +1,5 @@
 {
-  "name": "orientation-project-js",
+  "name": "orientation-project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -41,5 +41,10 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.8.0",
     "prettier": "2.8.8"
-  }
+  },
+  "description": "Refer to the Fellowship LMS for information!",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

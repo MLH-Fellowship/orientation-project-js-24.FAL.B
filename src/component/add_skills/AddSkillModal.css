@@ -1,0 +1,96 @@
+/* Modal background */
+.modal-background {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+/* Modal container */
+.modal-container {
+    background-color: white;
+    width: 400px; /* Adjust size as needed */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+    position: relative;
+}
+
+.modal-content{
+    color: black;
+}
+
+/* Modal title */
+.modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Skill description container */
+.skill-description .description {
+    margin-bottom: 15px;
+}
+
+.description label {
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.description textarea {
+    width: 60%;
+    height: 40px;
+    padding: 8px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+    transition: border-color 0.3s ease;
+}
+
+.description textarea:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none;
+}
+
+/* Button styles */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-skill-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.add-skill-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.submit-btn:hover {
+    background-color: #81e022;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 500px) {
+    .modal-container {
+        width: 90%; /* Responsive modal width */
+    }
+}
