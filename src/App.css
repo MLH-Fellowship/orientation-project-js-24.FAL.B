@@ -27,3 +27,176 @@ button {
   border-radius: 4px;
   background-color: rgb(248 185 42);
 }
+
+.experienceForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.experienceForm .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.experienceForm label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.experienceForm .fullWidth {
+  flex: 1;
+  text-align: center;
+}
+
+.experienceForm .logoPreview {
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+.experienceForm buttonRow {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.experienceForm button {
+  padding: 8px 16px;
+  background-color: #f8b92a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px; 
+}
+
+.experienceForm button:hover {
+  background-color: #dc8937;
+}
+.experienceForm .fileUploadContainer {
+  display: flex;
+  justify-content: center; 
+  margin: 20px 0; 
+}
+.experienceForm  .logoPreviewContainer {
+  display: flex;
+  justify-content: center; 
+  margin: 20px 0; 
+}
+
+.experienceForm  .logoPreview {
+  max-width: 50px; 
+  max-height: 50px; 
+  width: auto; 
+  height: auto; 
+  object-fit: contain; 
+  margin-bottom: 10px; 
+  align-items: center;
+}
+
+
+.experienceForm .fileUploadContainer label {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+.experienceTable {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.experienceRow {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+}
+
+.experienceRow:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.experienceLogo {
+  flex: 0 0 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.experienceLogo img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.noLogo {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #777;
+}
+
+.experienceDetails {
+  flex-grow: 1;
+  padding: 0 15px;
+}
+
+.experienceTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.experienceCompany {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.experienceDates {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.experienceDescription {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.experienceActions {
+  flex: 0 0 120px; 
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.experienceActions button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.experienceActions button:hover {
+  background-color: #0056b3;
+}
