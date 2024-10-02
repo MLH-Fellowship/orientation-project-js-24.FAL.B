@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 function ViewExperience({ experiences, onEdit, onDelete }) {
   const sortedExperiences = experiences.sort((a, b) => {
-    const isACurrent = a.end_date === 'Present';
-    const isBCurrent = b.end_date === 'Present';
+    const isACurrent = a.end_date === "Present";
+    const isBCurrent = b.end_date === "Present";
 
     if (isACurrent && !isBCurrent) return -1;
     if (!isACurrent && isBCurrent) return 1;
@@ -29,9 +29,11 @@ function ViewExperience({ experiences, onEdit, onDelete }) {
             <div className="experienceTitle">{experience.title}</div>
             <div className="experienceCompany">{experience.company}</div>
             <div className="experienceDates">
-              {experience.start_date} - {experience.end_date || 'Present'}
+              {experience.start_date} - {experience.end_date || "Present"}
             </div>
-            <div className="experienceDescription">{experience.description}</div>
+            <div className="experienceDescription">
+              {experience.description}
+            </div>
           </div>
 
           <div className="experienceActions">

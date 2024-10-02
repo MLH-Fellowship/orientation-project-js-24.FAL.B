@@ -8,16 +8,16 @@ function App() {
   const [showForm, setShowForm] = useState(false);
 
   const handleAddExperience = () => {
-    setShowForm(true); 
+    setShowForm(true);
   };
 
   const handleSubmitExperience = (experienceData) => {
-    setExperiences([...experiences, experienceData]); 
-    setShowForm(false); 
+    setExperiences([...experiences, experienceData]);
+    setShowForm(false);
   };
 
   const handleCancel = () => {
-    setShowForm(false); 
+    setShowForm(false);
   };
 
   return (
@@ -25,9 +25,12 @@ function App() {
       <h1>Resume Builder</h1>
       <div className="resumeSection">
         <h2>Experience</h2>
-        
+
         {showForm ? (
-          <ExperienceForm onSubmit={handleSubmitExperience} onCancel={handleCancel} />
+          <ExperienceForm
+            onSubmit={handleSubmitExperience}
+            onCancel={handleCancel}
+          />
         ) : (
           <>
             <button onClick={handleAddExperience}>Add Experience</button>
@@ -41,7 +44,7 @@ function App() {
         <p>Education Placeholder</p>
         <button>Add Education</button>
       </div>
-      
+
       <div className="resumeSection">
         <h2>Skills</h2>
         <p>Skill Placeholder</p>

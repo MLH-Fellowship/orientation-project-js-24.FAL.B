@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function ExperienceForm({ onSubmit, onCancel }) {
   const [formData, setFormData] = useState({
-    title: '',
-    company: '',
-    start_date: '',
-    end_date: '',
-    description: '',
-    logo: '',
+    title: "",
+    company: "",
+    start_date: "",
+    end_date: "",
+    description: "",
+    logo: "",
     isCurrent: false,
   });
 
@@ -30,13 +30,17 @@ function ExperienceForm({ onSubmit, onCancel }) {
   };
 
   const handleCheckboxChange = () => {
-    setFormData((prev) => ({ ...prev, isCurrent: !prev.isCurrent, end_date: '' }));
+    setFormData((prev) => ({
+      ...prev,
+      isCurrent: !prev.isCurrent,
+      end_date: "",
+    }));
   };
 
   const validateDates = () => {
     if (!formData.isCurrent && formData.end_date) {
       if (new Date(formData.end_date) < new Date(formData.start_date)) {
-        setErrors({ end_date: 'End date cannot be earlier than start date' });
+        setErrors({ end_date: "End date cannot be earlier than start date" });
         return false;
       }
     }
@@ -53,7 +57,7 @@ function ExperienceForm({ onSubmit, onCancel }) {
       title: formData.title,
       company: formData.company,
       start_date: formData.start_date,
-      end_date: formData.isCurrent ? 'Present' : formData.end_date,
+      end_date: formData.isCurrent ? "Present" : formData.end_date,
       description: formData.description,
       logo: formData.logo,
     };
@@ -64,15 +68,15 @@ function ExperienceForm({ onSubmit, onCancel }) {
   return (
     <form onSubmit={handleSubmit} className="experienceForm">
       {formData.logo && (
-  <div className="logoPreviewContainer">
-    <img src={formData.logo} alt="Logo" className="logoPreview" />
-  </div>
-)}
-      <div className='fileUploadContainer'>
-      <label className="fullWidth">
-        Logo:
-        <input type="file" name="logo" onChange={handleFileChange} />
-      </label>
+        <div className="logoPreviewContainer">
+          <img src={formData.logo} alt="Logo" className="logoPreview" />
+        </div>
+      )}
+      <div className="fileUploadContainer">
+        <label className="fullWidth">
+          Logo:
+          <input type="file" name="logo" onChange={handleFileChange} />
+        </label>
       </div>
       <div className="row">
         <label>
@@ -113,11 +117,15 @@ function ExperienceForm({ onSubmit, onCancel }) {
           <input
             type="date"
             name="end_date"
-            value={formData.isCurrent ? '' : formData.end_date}
+            value={formData.isCurrent ? "" : formData.end_date}
             onChange={handleChange}
             disabled={formData.isCurrent}
           />
-          {errors.end_date && <span className="error" style={{color:"red"}}>{errors.end_date}</span>}
+          {errors.end_date && (
+            <span className="error" style={{ color: "red" }}>
+              {errors.end_date}
+            </span>
+          )}
         </label>
       </div>
 
@@ -133,12 +141,18 @@ function ExperienceForm({ onSubmit, onCancel }) {
 
       <label className="fullWidth">
         Description:
-        <textarea name="description" value={formData.description} onChange={handleChange} />
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+        />
       </label>
 
       <div className="buttonRow">
         <button type="submit">Submit</button>
-        <button type="button" onClick={onCancel}>Cancel</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
       </div>
     </form>
   );
