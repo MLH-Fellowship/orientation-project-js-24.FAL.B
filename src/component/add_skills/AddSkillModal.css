@@ -1,4 +1,3 @@
-/* Modal background */
 .modal-background {
     position: fixed;
     inset: 0;
@@ -9,26 +8,20 @@
     z-index: 50;
 }
 
+
 /* Modal container */
 .modal-container {
+    display: flex;
+    flex-direction: row;
     background-color: white;
-    width: 400px; /* Adjust size as needed */
+    width: 60%; /* Adjust size as needed */
+    height: 60%;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
     position: relative;
-}
-
-.modal-content{
     color: black;
-}
-
-/* Modal title */
-.modal-title {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
+    justify-content: space-between; /* Make sure both sides (left and right) are spaced evenly */
 }
 
 /* Skill description container */
@@ -59,38 +52,45 @@
     outline: none;
 }
 
-/* Button styles */
-.modal-buttons {
+/* Left side - modal-content */
+.modal-content {
+    width: 50%; /* Set width to take 50% of the modal */
+    padding-right: 20px;
+    border-right: 1px solid #ddd; /* Vertical line on the right side */
+}
+
+/* Right side - added-skill-content */
+.added-skill-content {
+    width: 50%; /* Take up the remaining 50% of the modal */
+    padding-left: 20px; /* Adds some spacing from the left */
+}
+
+/* Added skills section */
+.added-skills-section {
+    width: 100%; /* Ensure it takes up the full width of the right section */
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px; /* Spacing between skill cards */
+    height: 70%;
+    /* overflow-y: scroll; */
 }
 
-button {
-    padding: 10px 15px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.added-skill-content .added-skills-section {
+    flex-grow: 1;
+    overflow-y: scroll; /* If skills exceed the container, scroll */
 }
 
-.add-skill-btn {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-.add-skill-btn:hover {
-    background-color: #e0e0e0;
-}
-
-.submit-btn:hover {
-    background-color: #81e022;
-}
-
-/* Media Query for smaller screens */
+/* Ensure the modal adapts for smaller screens */
 @media (max-width: 500px) {
     .modal-container {
-        width: 90%; /* Responsive modal width */
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .modal-content, .added-skill-content {
+        width: 100%;
+        padding: 10px;
+        border-right: none; /* Remove the border on smaller screens */
+        border-bottom: 1px solid #ddd; /* Add border between sections on small screens */
     }
 }
