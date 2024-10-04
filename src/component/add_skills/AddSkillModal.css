@@ -1,96 +1,96 @@
 .modal-background {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark overlay */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 50;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
 }
-
 
 /* Modal container */
 .modal-container {
-    display: flex;
-    flex-direction: row;
-    background-color: white;
-    width: 60%; /* Adjust size as needed */
-    height: 60%;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
-    position: relative;
-    color: black;
-    justify-content: space-between; /* Make sure both sides (left and right) are spaced evenly */
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  width: 60%; /* Adjust size as needed */
+  height: 60%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+  position: relative;
+  color: black;
+  justify-content: space-between; /* Make sure both sides (left and right) are spaced evenly */
 }
 
 /* Skill description container */
 .skill-description .description {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .description label {
-    font-weight: 600;
-    color: #333;
-    display: block;
-    margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .description textarea {
-    width: 60%;
-    height: 40px;
-    padding: 8px;
-    font-size: 0.9rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    resize: none;
-    transition: border-color 0.3s ease;
+  width: 60%;
+  height: 40px;
+  padding: 8px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+  transition: border-color 0.3s ease;
 }
 
 .description textarea:focus {
-    border-color: #007bff; /* Blue border on focus */
-    outline: none;
+  border-color: #007bff; /* Blue border on focus */
+  outline: none;
 }
 
 /* Left side - modal-content */
 .modal-content {
-    width: 50%; /* Set width to take 50% of the modal */
-    padding-right: 20px;
-    border-right: 1px solid #ddd; /* Vertical line on the right side */
+  width: 50%; /* Set width to take 50% of the modal */
+  padding-right: 20px;
+  border-right: 1px solid #ddd; /* Vertical line on the right side */
 }
 
 /* Right side - added-skill-content */
 .added-skill-content {
-    width: 50%; /* Take up the remaining 50% of the modal */
-    padding-left: 20px; /* Adds some spacing from the left */
+  width: 50%; /* Take up the remaining 50% of the modal */
+  padding-left: 20px; /* Adds some spacing from the left */
 }
 
 /* Added skills section */
 .added-skills-section {
-    width: 100%; /* Ensure it takes up the full width of the right section */
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Spacing between skill cards */
-    height: 70%;
-    /* overflow-y: scroll; */
+  width: 100%; /* Ensure it takes up the full width of the right section */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Spacing between skill cards */
+  height: 70%;
+  /* overflow-y: scroll; */
 }
 
 .added-skill-content .added-skills-section {
-    flex-grow: 1;
-    overflow-y: scroll; /* If skills exceed the container, scroll */
+  flex-grow: 1;
+  overflow-y: scroll; /* If skills exceed the container, scroll */
 }
 
 /* Ensure the modal adapts for smaller screens */
 @media (max-width: 500px) {
-    .modal-container {
-        flex-direction: column;
-        width: 90%;
-    }
+  .modal-container {
+    flex-direction: column;
+    width: 90%;
+  }
 
-    .modal-content, .added-skill-content {
-        width: 100%;
-        padding: 10px;
-        border-right: none; /* Remove the border on smaller screens */
-        border-bottom: 1px solid #ddd; /* Add border between sections on small screens */
-    }
+  .modal-content,
+  .added-skill-content {
+    width: 100%;
+    padding: 10px;
+    border-right: none; /* Remove the border on smaller screens */
+    border-bottom: 1px solid #ddd; /* Add border between sections on small screens */
+  }
 }

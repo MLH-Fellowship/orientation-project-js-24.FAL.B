@@ -7,16 +7,11 @@ function App() {
 
   const clickAddSkill = () => {
     setOpenAddSkillModal((prevState) => !prevState);
-  }
+  };
 
-  
   return (
     <div className="App">
-      {
-        openAddSkillModal && (
-          <AddSkillModal onClose={clickAddSkill}/>
-        )
-      }
+      {openAddSkillModal && <AddSkillModal onClose={clickAddSkill} />}
 
       <h1>Resume Builder</h1>
       <div className="resumeSection">
