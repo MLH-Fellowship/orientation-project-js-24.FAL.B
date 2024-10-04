@@ -1,35 +1,86 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./AddSkillModal.css"
 import AddedSkillCards from "./AddedSkillsCard";
 
-let added_skills = [
-    {   
-        "name": "JavaScript",
-        "proficiency": "2-4 years",
-        "logo": "example-logo.png"   
-    },
-    {   
-        "name": "React",
-        "proficiency": "1-3 years",
-        "logo": "example-logo.png"   
-    }
-]
 
 function AddSkillModal({onClose}){
-    const [numberOfSkills, setNumberOfSkills] = useState(added_skills.length);
     const [skillName, setSkillName] = useState("");
     const [skillProficiency, setSkillProficiency] = useState("");
     const [skillLogo, setSkillLogo] = useState("");
+    const [addedSkills, setAddedSkills] = useState([]);
+
+    // Fetch the current list of skills when it first load
+    useEffect(() => {
+        const fetchSkills = async () => {
+            const added_skill_list = getListSkills();
+            if(added_skill_list){
+                setAddedSkills(added_skill_list);
+            }
+        }
+
+        fetchSkills();
+
+    }, []);
+
+
+    const getListSkills = async () => {
+        try {
+            const response = await fetch('resume/skill', {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if(!response.ok){
+                throw new Error("Failed to get skills");
+            }
+
+            const result = await response.json();
+            return result
+        } catch (error) {
+            console.error("Error", error);
+        }
+    }
 
     //This addSkill function will be updated for Api POst request
-    const addSkill = () => {
-        added_skills.push({
+    const addSkillHandler = async (skillData) => {
+        try {
+            const response = await fetch('/resume/skill', {
+                method: "POST",
+                body: JSON.stringify(skillData),
+                headers: {
+                    'Content-Type': 'application/json' 
+                }
+            });
+
+            if(!response.ok){
+                throw new Error("Failed to add skill");
+            }
+
+            const result = await response.json();
+            return result.id;
+        } catch (error) {
+            console.error("Error", error);
+        }
+
+    }
+
+    const addSkill = async() => {
+        const skillData = {
             "name": skillName,
             "proficiency": skillProficiency,
-            "logo": skillLogo
-        })
+            "logo": skillLogo             
+        }
 
-        setNumberOfSkills(added_skills.length);
+        const result_id = await addSkillHandler(skillData);
+        
+        if(!result_id){
+            throw new Error("Failed to get skill id");
+        }
+        
+        const newSkill = {...skillData, id: result_id};
+        setAddedSkills((prevSkill) => [...prevSkill, newSkill]);
     }
 
     const handleSkillNameChange = (event) => {
@@ -86,8 +137,8 @@ function AddSkillModal({onClose}){
                     {/* Added skills */}
                     <div className="added-skills-section">
                         {
-                            added_skills ? (
-                                added_skills.map((skill, index) => (
+                            addedSkills.length > 0 ? (
+                                addedSkills.map((skill, index) => (
                                     <div key={index}>
                                       <AddedSkillCards skill={skill}/> 
                                     </div>
@@ -98,7 +149,7 @@ function AddSkillModal({onClose}){
                         }
                     </div>
                     <div>
-                        <p>Added skills {numberOfSkills}</p>
+                        <p>Added skills {addedSkills.length}</p>
                     </div>
                     <div className="modal-buttons">
                         <button className="submit-btn" onClick={onClose}>Submit</button>
