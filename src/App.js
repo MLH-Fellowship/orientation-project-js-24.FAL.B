@@ -1,42 +1,87 @@
 import ExperienceForm from "./components/experience/ExperienceForm";
 import ViewExperience from "./components/experience/ViewExperience";
 import "./App.css";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import EditExperienceForm from "./components/experience/EditExperienceForm";
 
 function App() {
   const [experiences, setExperiences] = useState([]);
-  const [showForm, setShowForm] = useState(false);
-
-  const handleAddExperience = () => {
-    setShowForm(true);
-  };
+  const [activeTab, setActiveTab] = useState("");
 
   const handleSubmitExperience = (experienceData) => {
     setExperiences([...experiences, experienceData]);
-    setShowForm(false);
+    setActiveTab("view");
   };
 
   const handleCancel = () => {
-    setShowForm(false);
+    setActiveTab("view");
   };
 
+  const [selectedExperience, setSelectedExperience] = useState(null);
+
+  const handleEdit = useCallback(
+    (newItem) => {
+      const updatedExperiences = experiences.map((experience) =>
+        experience.id === newItem.id ? newItem : experience
+      );
+      setExperiences(updatedExperiences);
+      setActiveTab("view");
+
+      console.log({ experiences });
+    },
+    [experiences]
+  );
+
+  const handleDelete = useCallback(
+    (id) => {
+      const filtered = () =>
+        experiences.filter((experience) => experience.id !== id);
+      setExperiences(filtered);
+    },
+    [experiences]
+  );
+
+  const experienceTabs = {
+    form: (
+      <ExperienceForm
+        onSubmit={handleSubmitExperience}
+        onCancel={handleCancel}
+        setSelectedExperience={setSelectedExperience}
+      />
+    ),
+    view: (
+      <>
+        <ViewExperience
+          experiences={experiences}
+          setSelectedExperience={setSelectedExperience}
+          setActiveTab={setActiveTab}
+          onDelete={handleDelete}
+        />
+      </>
+    ),
+    edit: (
+      <EditExperienceForm
+        experience={selectedExperience}
+        onSubmit={handleEdit}
+      />
+    ),
+  };
+
+  console.log({ experiences });
   return (
     <div className="App">
       <h1>Resume Builder</h1>
       <div className="resumeSection">
         <h2>Experience</h2>
 
-        {showForm ? (
-          <ExperienceForm
-            onSubmit={handleSubmitExperience}
-            onCancel={handleCancel}
-          />
-        ) : (
-          <>
-            <button onClick={handleAddExperience}>Add Experience</button>
-            <ViewExperience experiences={experiences} />
-          </>
-        )}
+        <button
+          onClick={() => setActiveTab("form")}
+          style={{ marginBottom: "20px" }}
+        >
+          Add Experience
+        </button>
+
+        {experienceTabs[activeTab]}
       </div>
 
       <div className="resumeSection">

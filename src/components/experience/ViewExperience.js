@@ -1,6 +1,12 @@
 import React from "react";
 
-function ViewExperience({ experiences, onEdit, onDelete }) {
+function ViewExperience({
+  experiences,
+  onEdit,
+  onDelete,
+  setSelectedExperience,
+  setActiveTab,
+}) {
   const sortedExperiences = experiences.sort((a, b) => {
     const isACurrent = a.end_date === "Present";
     const isBCurrent = b.end_date === "Present";
@@ -37,8 +43,15 @@ function ViewExperience({ experiences, onEdit, onDelete }) {
           </div>
 
           <div className="experienceActions">
-            <button onClick={() => onEdit(index)}>Edit</button>
-            <button onClick={() => onDelete(index)}>Delete</button>
+            <button
+              onClick={() => {
+                setSelectedExperience(experience);
+                setActiveTab("edit");
+              }}
+            >
+              Edit
+            </button>
+            <button onClick={() => onDelete(experience.id)}>Delete</button>
           </div>
         </div>
       ))}
