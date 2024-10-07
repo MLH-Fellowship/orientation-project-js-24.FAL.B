@@ -46,9 +46,9 @@
     "prettier": "2.8.8"
   },
   "jest": {
-      "moduleNameMapper": {
-        "react-pdf/dist/esm/entry.webpack": "react-pdf/dist/esm/entry.jest"
-      }
+    "moduleNameMapper": {
+      "react-pdf/dist/esm/entry.webpack": "react-pdf/dist/esm/entry.jest"
+    }
   },
   "description": "Refer to the Fellowship LMS for information!",
   "main": "index.js",
