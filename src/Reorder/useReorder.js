@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const useReorder = (items, setItems, sectionType) => {
   const onCardRef = useRef(0);
   const overCardRef = useRef(0);
   const timeoutRef = useRef(null);
-  const latestItemsRef = useRef(items);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
@@ -35,7 +34,7 @@ const useReorder = (items, setItems, sectionType) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data: latestItemsRef.current }),
+        body: JSON.stringify({ data: items }),
       });
 
       if (!response.ok)
@@ -49,10 +48,6 @@ const useReorder = (items, setItems, sectionType) => {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    latestItemsRef.current = items;
-  }, [items]);
 
   return {
     response,
