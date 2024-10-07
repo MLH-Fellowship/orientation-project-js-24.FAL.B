@@ -1,9 +1,16 @@
 import "./App.css";
+import User from "./components/User/page";
 
 function App() {
   return (
     <div className="App">
       <h1>Resume Builder</h1>
+      <div className="resumeSection">
+        <h2>User</h2>
+        <p>Add User Information</p>
+        <User />
+        <br></br>
+      </div>
       <div className="resumeSection">
         <h2>Experience</h2>
         <p>Experience Placeholder</p>
