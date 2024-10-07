@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import './SkillEditPage.css';
+import React, { useState, useEffect } from "react";
+import "./SkillEditPage.css";
 
 function SkillEditPage() {
   const [skills, setSkills] = useState([]);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [formData, setFormData] = useState({
-    name: '',
-    proficiency: '',
-    logo: ''
+    name: "",
+    proficiency: "",
+    logo: "",
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,13 +20,13 @@ function SkillEditPage() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://127.0.0.1:5000/resume/skill', {
-        method: 'GET',
+      const response = await fetch("http://127.0.0.1:5000/resume/skill", {
+        method: "GET",
         headers: {
-          'Accept': 'application/json',
+          Accept: "application/json",
         },
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         setSkills(data);
@@ -48,9 +48,9 @@ function SkillEditPage() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -59,15 +59,18 @@ function SkillEditPage() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://127.0.0.1:5000/resume/skill?index=${selectedSkill.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `http://127.0.0.1:5000/resume/skill?index=${selectedSkill.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       if (response.ok) {
-        alert('Skill updated successfully!');
+        alert("Skill updated successfully!");
         await fetchSkills();
         setSelectedSkill(null);
       } else {
@@ -94,9 +97,13 @@ function SkillEditPage() {
               <p>No skills found. Add some skills first.</p>
             ) : (
               skills.map((skill) => (
-                <div 
-                  key={skill.id} 
-                  className={`skill-item ${selectedSkill && selectedSkill.id === skill.id ? 'selected' : ''}`} 
+                <div
+                  key={skill.id}
+                  className={`skill-item ${
+                    selectedSkill && selectedSkill.id === skill.id
+                      ? "selected"
+                      : ""
+                  }`}
                   onClick={() => handleSelectSkill(skill)}
                 >
                   <p>{skill.name}</p>
@@ -137,8 +144,12 @@ function SkillEditPage() {
                     required
                   />
                 </div>
-                <button type="submit" className="submit-button" disabled={isLoading}>
-                  {isLoading ? 'Updating...' : 'Update Skill'}
+                <button
+                  type="submit"
+                  className="submit-button"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Updating..." : "Update Skill"}
                 </button>
               </form>
             )}

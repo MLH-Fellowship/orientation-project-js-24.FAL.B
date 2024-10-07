@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import "./App.css";
-import AddSkillForm from './components/skills/AddSkillForm';
-import SkillView from './components/skills/SkillView';
-import SkillEditPage from './components/skills/SkillEditPage';
+import AddSkillForm from "./components/skills/AddSkillForm";
+import SkillView from "./components/skills/SkillView";
+import SkillEditPage from "./components/skills/SkillEditPage";
 import EducationForm from "./components/education/EducationForm";
 import EducationView from "./components/education/EducationView";
-import EducationEditPage from './components/education/EducationEditPage';
+import EducationEditPage from "./components/education/EducationEditPage";
 
 function App() {
   const [showAddSkillForm, setShowAddSkillForm] = useState(false);
   const [showSkillEditPage, setShowSkillEditPage] = useState(false);
   const [skills, setSkills] = useState([]);
-  
+
   const [showEducationForm, setShowEducationForm] = useState(false);
   const [showEducationEditPage, setShowEducationEditPage] = useState(false);
   const [education, setEducation] = useState([]);
@@ -72,8 +72,15 @@ function App() {
             {showEducationEditPage ? "Hide Edit Education" : "Edit Education"}
           </button>
         </div>
-        {showEducationForm && <EducationForm onSubmit={handleEducationFormSubmit} />}
-        {showEducationEditPage && <EducationEditPage education={education} onUpdate={handleEducationUpdate} />}
+        {showEducationForm && (
+          <EducationForm onSubmit={handleEducationFormSubmit} />
+        )}
+        {showEducationEditPage && (
+          <EducationEditPage
+            education={education}
+            onUpdate={handleEducationUpdate}
+          />
+        )}
       </div>
       <div className="resumeSection">
         <h2>Skills</h2>
@@ -87,7 +94,9 @@ function App() {
           </button>
         </div>
         {showAddSkillForm && <AddSkillForm onSubmit={handleFormSubmit} />}
-        {showSkillEditPage && <SkillEditPage skills={skills} onUpdate={handleSkillUpdate} />}
+        {showSkillEditPage && (
+          <SkillEditPage skills={skills} onUpdate={handleSkillUpdate} />
+        )}
       </div>
       <br />
       <button>Export</button>

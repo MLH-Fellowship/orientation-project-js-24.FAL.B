@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './SkillView.css';
+import React, { useState, useEffect } from "react";
+import "./SkillView.css";
 
 function SkillView() {
   const [skills, setSkills] = useState([]);
@@ -14,13 +14,13 @@ function SkillView() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://127.0.0.1:5000/resume/skill', {
-        method: 'GET',
+      const response = await fetch("http://127.0.0.1:5000/resume/skill", {
+        method: "GET",
         headers: {
-          'Accept': 'application/json',
+          Accept: "application/json",
         },
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         setSkills(data);

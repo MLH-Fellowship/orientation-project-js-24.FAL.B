@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import './EducationEditPage.css';
+import React, { useState, useEffect } from "react";
+import "./EducationEditPage.css";
 
 function EducationEditPage() {
   const [educations, setEducations] = useState([]);
   const [selectedEducation, setSelectedEducation] = useState(null);
   const [formData, setFormData] = useState({
-    course: '',
-    school: '',
-    start_date: '',
-    end_date: '',
-    grade: '',
-    logo: ''
+    course: "",
+    school: "",
+    start_date: "",
+    end_date: "",
+    grade: "",
+    logo: "",
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log('EducationEditPage mounted');
+    console.log("EducationEditPage mounted");
     fetchEducations();
   }, []);
 
@@ -24,28 +24,31 @@ function EducationEditPage() {
     setIsLoading(true);
     setError(null);
     try {
-      console.log('Fetching educations...');
-      const response = await fetch('http://127.0.0.1:5000/resume/education', {
-        method: 'GET',
+      console.log("Fetching educations...");
+      const response = await fetch("http://127.0.0.1:5000/resume/education", {
+        method: "GET",
         headers: {
-          'Accept': 'application/json',
+          Accept: "application/json",
         },
-        mode: 'cors'
+        mode: "cors",
       });
-      console.log('Response status:', response.status);
-      console.log('Response headers:', response.headers);
-      
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers);
+
       if (response.ok) {
         const data = await response.json();
-        console.log('Fetched educations:', data);
+        console.log("Fetched educations:", data);
         setEducations(data);
       } else {
         const errorText = await response.text();
-        console.error('Failed to fetch educations. Server response:', errorText);
+        console.error(
+          "Failed to fetch educations. Server response:",
+          errorText
+        );
         setError(`Failed to fetch educations. Server response: ${errorText}`);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       setError(`An error occurred while fetching educations: ${error.message}`);
     } finally {
       setIsLoading(false);
@@ -53,16 +56,16 @@ function EducationEditPage() {
   };
 
   const handleSelectEducation = (education) => {
-    console.log('Selected education:', education);
+    console.log("Selected education:", education);
     setSelectedEducation(education);
     setFormData(education);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -71,26 +74,32 @@ function EducationEditPage() {
     setIsLoading(true);
     setError(null);
     try {
-      console.log('Updating education:', formData);
-      const response = await fetch(`http://127.0.0.1:5000/resume/education?index=${selectedEducation.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      console.log("Updating education:", formData);
+      const response = await fetch(
+        `http://127.0.0.1:5000/resume/education?index=${selectedEducation.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       if (response.ok) {
-        console.log('Education updated successfully');
-        alert('Education updated successfully!');
+        console.log("Education updated successfully");
+        alert("Education updated successfully!");
         await fetchEducations();
         setSelectedEducation(null);
       } else {
         const errorText = await response.text();
-        console.error('Failed to update education. Server response:', errorText);
+        console.error(
+          "Failed to update education. Server response:",
+          errorText
+        );
         setError(`Failed to update education. Server response: ${errorText}`);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       setError(`An error occurred while updating education: ${error.message}`);
     } finally {
       setIsLoading(false);
@@ -115,12 +124,18 @@ function EducationEditPage() {
               <p>No educations found. Add some education entries first.</p>
             ) : (
               educations.map((edu) => (
-                <div 
-                  key={edu.id} 
-                  className={`education-item ${selectedEducation && selectedEducation.id === edu.id ? 'selected' : ''}`} 
+                <div
+                  key={edu.id}
+                  className={`education-item ${
+                    selectedEducation && selectedEducation.id === edu.id
+                      ? "selected"
+                      : ""
+                  }`}
                   onClick={() => handleSelectEducation(edu)}
                 >
-                  <p>{edu.course} at {edu.school}</p>
+                  <p>
+                    {edu.course} at {edu.school}
+                  </p>
                 </div>
               ))
             )}
@@ -188,8 +203,12 @@ function EducationEditPage() {
                     required
                   />
                 </div>
-                <button type="submit" className="submit-button" disabled={isLoading}>
-                  {isLoading ? 'Updating...' : 'Update Education'}
+                <button
+                  type="submit"
+                  className="submit-button"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Updating..." : "Update Education"}
                 </button>
               </form>
             )}
