@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import AddSkillModal from "./component/add_skills/AddSkillModal";
+import AddSkillModal from "./component/add_skills/AddSkillModal.jsx";
+import ResumePage from "./component/exportResume/resumeTemplate.jsx";
 
 function App() {
   const [openAddSkillModal, setOpenAddSkillModal] = useState(false);
@@ -33,7 +34,7 @@ function App() {
         <br></br>
       </div>
       <br></br>
-      <button>Export</button>
+      <ResumePage></ResumePage>
     </div>
   );
 }
