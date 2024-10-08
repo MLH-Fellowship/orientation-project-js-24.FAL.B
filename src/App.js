@@ -4,7 +4,6 @@ import "./App.css";
 import { useState } from "react";
 import User from "./components/User/page";
 
-
 function App() {
   const [experiences, setExperiences] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -33,7 +32,6 @@ function App() {
       </div>
       <div className="resumeSection">
         <h2>Experience</h2>
-
         {showForm ? (
           <ExperienceForm
             onSubmit={handleSubmitExperience}

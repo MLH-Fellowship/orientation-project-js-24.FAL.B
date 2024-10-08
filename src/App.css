@@ -30,19 +30,67 @@ button {
   background-color: rgb(248 185 42);
 }
 
+.experienceForm .modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  max-width: 90%;
+  width: 400px;
+  height:450px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.experienceForm .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.experienceForm .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
 
 .experienceForm {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  max-width: 600px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .experienceForm .row {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .experienceForm .row {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .experienceForm label {
@@ -61,7 +109,7 @@ button {
   margin-bottom: 10px;
 }
 
-.experienceForm buttonRow {
+.experienceForm .buttonRow {
   display: flex;
   gap: 10px;
   justify-content: space-between;
@@ -73,17 +121,18 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 10px;
 }
 
 .experienceForm button:hover {
   background-color: #dc8937;
 }
+
 .experienceForm .fileUploadContainer {
   display: flex;
   justify-content: center;
   margin: 20px 0;
 }
+
 .experienceForm .logoPreviewContainer {
   display: flex;
   justify-content: center;
@@ -97,7 +146,6 @@ button {
   height: auto;
   object-fit: contain;
   margin-bottom: 10px;
-  align-items: center;
 }
 
 .experienceForm .fileUploadContainer label {
@@ -106,102 +154,18 @@ button {
   align-items: center;
 }
 
-.experienceTable {
+.experienceForm .buttonRow {
   display: flex;
-  flex-direction: column;
-  width: 100%;
   gap: 10px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.experienceRow {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  transition: box-shadow 0.3s ease;
-}
-
-.experienceRow:hover {
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.experienceLogo {
-  flex: 0 0 100px;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.experienceLogo img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
+@media (min-width: 600px) {
+  .experienceForm .buttonRow {
+    justify-content: flex-end;
+  }
 }
 
-.noLogo {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ddd;
-  border-radius: 8px;
-  font-size: 12px;
-  color: #777;
-}
-
-.experienceDetails {
-  flex-grow: 1;
-  padding: 0 15px;
-}
-
-.experienceTitle {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-.experienceCompany {
-  font-size: 16px;
-  color: #777;
-  margin-bottom: 5px;
-}
-
-.experienceDates {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 5px;
-}
-
-.experienceDescription {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.5;
-}
-
-.experienceActions {
-  flex: 0 0 120px;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.experienceActions button {
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.experienceActions button:hover {
-  background-color: #0056b3;
-=======
 .modal-overlay {
   position: fixed;
   top: 0;
