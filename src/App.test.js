@@ -2,7 +2,6 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 // import App from "./App";
 import User from "./components/User/page.jsx";
 
-
 /*
 test("renders learn react link", () => {
 
