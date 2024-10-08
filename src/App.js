@@ -2,6 +2,8 @@ import ExperienceForm from "./components/experience/ExperienceForm";
 import ViewExperience from "./components/experience/ViewExperience";
 import "./App.css";
 import { useState } from "react";
+import User from "./components/User/page";
+
 
 function App() {
   const [experiences, setExperiences] = useState([]);
@@ -23,6 +25,12 @@ function App() {
   return (
     <div className="App">
       <h1>Resume Builder</h1>
+      <div className="resumeSection">
+        <h2>User</h2>
+        <p>Add User Information</p>
+        <User />
+        <br></br>
+      </div>
       <div className="resumeSection">
         <h2>Experience</h2>
 
