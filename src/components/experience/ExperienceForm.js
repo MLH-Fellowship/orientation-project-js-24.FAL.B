@@ -171,7 +171,7 @@ function ExperienceForm({ onSubmit, onCancel }) {
 
           <div className="buttonRow">
             <button type="submit">Submit</button>
-            <button type="button" onClick={onCancel}>
+            <button type="button" name="cancel" onClick={onCancel}>
               Cancel
             </button>
           </div>
