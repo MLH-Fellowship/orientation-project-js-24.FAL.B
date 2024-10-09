@@ -1,5 +1,5 @@
 import "./App.css";
-import Dropzone from "./drag and drop/Dropzone";
+import Dropzone from "./components/Dropzone";
 
 function App() {
   return (
