@@ -6,6 +6,7 @@ import SkillEditPage from "./components/skills/SkillEditPage";
 import EducationForm from "./components/education/EducationForm";
 import EducationView from "./components/education/EducationView";
 import EducationEditPage from "./components/education/EducationEditPage";
+import User from "./components/User/page";
 
 function App() {
   const [showAddSkillForm, setShowAddSkillForm] = useState(false);
@@ -55,6 +56,12 @@ function App() {
   return (
     <div className="App">
       <h1>Resume Builder</h1>
+      <div className="resumeSection">
+        <h2>User</h2>
+        <p>Add User Information</p>
+        <User />
+        <br></br>
+      </div>
       <div className="resumeSection">
         <h2>Experience</h2>
         <p>Experience Placeholder</p>
