@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Dropzone from "../Dropzone";
 import "./SkillEditPage.css";
 
 function SkillEditPage() {
@@ -135,14 +136,8 @@ function SkillEditPage() {
                   />
                 </div>
                 <div className="form-field">
-                  <label htmlFor="logo">Logo URL:</label>
-                  <input
-                    id="logo"
-                    name="logo"
-                    value={formData.logo}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <label htmlFor="logo">Logo:</label>
+                  <Dropzone/>
                 </div>
                 <button
                   type="submit"

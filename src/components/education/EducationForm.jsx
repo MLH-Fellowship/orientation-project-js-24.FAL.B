@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Dropzone from "../Dropzone";
 
 const EducationForm = () => {
   const [formData, setFormData] = useState({
@@ -93,13 +94,9 @@ const EducationForm = () => {
             %
           </label>
           <label>
-            <h2>Logo URL</h2>
-            <input
-              type="text"
-              value={formData.logo}
-              placeholder="Logo URL"
-              onChange={handleChange("logo")}
-            />
+            <h2>Logo</h2>
+              <Dropzone/>
+            
           </label>
 
           <button onSubmit={handleSubmit}>Submit Education</button>
