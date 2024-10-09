@@ -167,7 +167,7 @@ function ExperienceForm({ onSubmit, onCancel }) {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              style={{ width: '100%', height: '150px' }} 
+              style={{ width: '100%', height: '100px' }} 
             />
             <RefineDescription 
               description={formData.description} 
