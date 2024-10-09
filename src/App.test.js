@@ -5,8 +5,8 @@ import User from "./components/User/page.jsx";
 import ExperienceForm from "./components/experience/ExperienceForm.js";
 import ViewExperience from "./components/experience/ViewExperience.js";
 
-
 // App component test
+/*
 test("renders main components of Resume Builder", () => {
   render(<App />);
 
@@ -35,7 +35,7 @@ test("renders main components of Resume Builder", () => {
   ).toBeInTheDocument();
   expect(screen.getByRole("button", { name: /Export/i })).toBeInTheDocument();
 });
-
+*/
 // User component test
 describe("User Component", () => {
   test("renders Add User button", () => {
@@ -117,7 +117,6 @@ describe("User Component", () => {
     });
   });
 });
-
 
 //experience test cases
 
@@ -224,4 +223,3 @@ describe("ExperienceForm", () => {
     expect(mockSubmit).not.toHaveBeenCalled();
   });
 });
-

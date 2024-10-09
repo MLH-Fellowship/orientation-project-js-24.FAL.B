@@ -43,7 +43,7 @@ function EducationEditPage() {
         const errorText = await response.text();
         console.error(
           "Failed to fetch educations. Server response:",
-          errorText
+          errorText,
         );
         setError(`Failed to fetch educations. Server response: ${errorText}`);
       }
@@ -83,7 +83,7 @@ function EducationEditPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-        }
+        },
       );
       if (response.ok) {
         console.log("Education updated successfully");
@@ -94,7 +94,7 @@ function EducationEditPage() {
         const errorText = await response.text();
         console.error(
           "Failed to update education. Server response:",
-          errorText
+          errorText,
         );
         setError(`Failed to update education. Server response: ${errorText}`);
       }
