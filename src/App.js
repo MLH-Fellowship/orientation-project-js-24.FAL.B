@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import User from './components/User/page';
+import User from "./components/User/page";
 
 function App() {
   const [showAddSkillForm, setShowAddSkillForm] = useState(false);
