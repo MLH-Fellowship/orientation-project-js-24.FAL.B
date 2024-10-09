@@ -1,0 +1,32 @@
+.education-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  margin: 0em 1em 2em 2em;
+}
+
+.education-item-school-container {
+  display: flex;
+  text-align: left;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.education-item-school {
+  display: flex;
+  text-align: left;
+  align-items: center;
+  gap: 0 1em;
+}
+
+.education-item-course {
+  display: flex;
+  gap: 0 5em;
+  justify-content: space-between;
+  margin: 0 3em;
+}
+
+.logo {
+  height: 2em;
+}
