@@ -1,17 +1,40 @@
+import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-// import App from "./App";
+import App from "./App";
 import User from "./components/User/page.jsx";
 import ExperienceForm from "./components/experience/ExperienceForm.js";
 import ViewExperience from "./components/experience/ViewExperience.js";
 
-/*
-test("renders learn react link", () => {
 
+// App component test
+test("renders main components of Resume Builder", () => {
   render(<App />);
-  const headingElement = screen.getByText(/resume builder/i);
-  expect(headingElement).toBeInTheDocument();
+
+  // Check for the main title
+  const titleElement = screen.getByText(/Resume Builder/i);
+  expect(titleElement).toBeInTheDocument();
+
+  // Check for section titles
+  expect(
+    screen.getByRole("heading", { name: /Experience/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("heading", { name: /Education/i })
+  ).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /Skills/i })).toBeInTheDocument();
+
+  // Check for some buttons
+  expect(
+    screen.getByRole("button", { name: /Add Experience/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: /Add Education/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: /Add Skill/i })
+  ).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /Export/i })).toBeInTheDocument();
 });
- */
 
 // User component test
 describe("User Component", () => {
@@ -94,6 +117,7 @@ describe("User Component", () => {
     });
   });
 });
+
 
 //experience test cases
 
@@ -200,3 +224,4 @@ describe("ExperienceForm", () => {
     expect(mockSubmit).not.toHaveBeenCalled();
   });
 });
+
