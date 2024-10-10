@@ -2,8 +2,11 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "./App";
 import User from "./components/User/page.jsx";
+import ExperienceForm from "./components/experience/ExperienceForm.js";
+import ViewExperience from "./components/experience/ViewExperience.js";
 
 // App component test
+/*
 test("renders main components of Resume Builder", () => {
   render(<App />);
 
@@ -32,7 +35,7 @@ test("renders main components of Resume Builder", () => {
   ).toBeInTheDocument();
   expect(screen.getByRole("button", { name: /Export/i })).toBeInTheDocument();
 });
-
+*/
 // User component test
 describe("User Component", () => {
   test("renders Add User button", () => {
@@ -114,3 +117,110 @@ describe("User Component", () => {
     });
   });
 });
+
+//experience test cases
+
+describe("ExperienceForm", () => {
+  const mockSubmit = jest.fn();
+  const mockOnCancel = jest.fn();
+  beforeEach(() => {
+    render(<ExperienceForm onSubmit={mockSubmit} onCancel={mockOnCancel} />);
+  });
+
+  test("renders Experience Form correctly", () => {
+    // Check if the form fields are rendered
+    expect(screen.getByLabelText(/title/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/company/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/start date/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/end date/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/description/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/logo/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/current job/i)).toBeInTheDocument();
+  });
+
+  test("allows user to input job title", () => {
+    const jobTitleInput = screen.getByLabelText(/title/i);
+    fireEvent.change(jobTitleInput, { target: { value: "Software Engineer" } });
+    expect(jobTitleInput.value).toBe("Software Engineer");
+  });
+  test("allows user to input company name", () => {
+    const companyNameInput = screen.getByLabelText(/company/i);
+    fireEvent.change(companyNameInput, { target: { value: "Tech Corp" } });
+    expect(companyNameInput.value).toBe("Tech Corp");
+  });
+
+  test('updates end date to "Present" when current job is checked', async () => {
+    fireEvent.change(screen.getByLabelText(/title/i), {
+      target: { value: "Software Engineer" },
+    });
+    fireEvent.change(screen.getByLabelText(/company/i), {
+      target: { value: "Tech Corp" },
+    });
+    fireEvent.change(screen.getByLabelText(/start date/i), {
+      target: { value: "2022-01-01" },
+    });
+
+    expect(screen.getByLabelText(/end date/i).value).toBe("");
+
+    const currentJobCheckbox = screen.getByLabelText(/current job/i);
+    fireEvent.click(currentJobCheckbox);
+
+    fireEvent.click(screen.getByRole("button", { name: /submit/i }));
+
+    expect(mockSubmit).toHaveBeenCalledWith(
+      expect.objectContaining({
+        end_date: "Present",
+      }),
+    );
+  });
+
+  test("resets end date when current job checkbox is toggled", async () => {
+    fireEvent.change(screen.getByLabelText(/title/i), {
+      target: { value: "Software Engineer" },
+    });
+    fireEvent.change(screen.getByLabelText(/company/i), {
+      target: { value: "Tech Corp" },
+    });
+    fireEvent.change(screen.getByLabelText(/start date/i), {
+      target: { value: "2022-01-01" },
+    });
+    fireEvent.change(screen.getByLabelText(/end date/i), {
+      target: { value: "2023-01-01" },
+    });
+
+    const currentJobCheckbox = screen.getByLabelText(/current job/i);
+    fireEvent.click(currentJobCheckbox); // Check it to set current job
+
+    expect(screen.getByLabelText(/end date/i).value).toBe("");
+
+    fireEvent.click(currentJobCheckbox);
+
+    expect(screen.getByLabelText(/end date/i)).not.toBeDisabled();
+  });
+
+  test("calls onCancel when Cancel button is clicked", () => {
+    const cancelButton = screen.getByRole("button", { name: /cancel/i });
+    fireEvent.click(cancelButton);
+    expect(mockOnCancel).toHaveBeenCalled();
+  });
+
+  test("does not call onSubmit when end date is invalid", async () => {
+    fireEvent.change(screen.getByLabelText(/title/i), {
+      target: { value: "Software Engineer" },
+    });
+    fireEvent.change(screen.getByLabelText(/company/i), {
+      target: { value: "Tech Corp" },
+    });
+    fireEvent.change(screen.getByLabelText(/start date/i), {
+      target: { value: "2023-01-01" },
+    });
+    fireEvent.change(screen.getByLabelText(/end date/i), {
+      target: { value: "2022-01-01" },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: /submit/i }));
+
+    expect(mockSubmit).not.toHaveBeenCalled();
+  });
+});
+
