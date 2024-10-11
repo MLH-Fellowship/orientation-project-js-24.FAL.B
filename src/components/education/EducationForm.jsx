@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import RefineDescription from "../../RefineDescription";
+import { useState } from "react";
+import Dropzone from "../Dropzone";
 
 function ExperienceForm({ onSubmit, onCancel }) {
   const [formData, setFormData] = useState({
@@ -160,19 +162,20 @@ function ExperienceForm({ onSubmit, onCancel }) {
             />
             Current Job
           </label>
-
           <label className="fullWidth">
-            Description:
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              style={{ width: '100%', height: '100px' }} 
-            />
-            <RefineDescription 
-              description={formData.description} 
-              setDescription={(refinedDescription) => setFormData(prev => ({ ...prev, description: refinedDescription }))} 
-            />  
+              Description:
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                style={{ width: '100%', height: '100px' }} 
+              />
+              <RefineDescription 
+                description={formData.description} 
+                setDescription={(refinedDescription) => setFormData(prev => ({ ...prev, description: refinedDescription }))} 
+              />  
+            <h2>Logo</h2>
+            <Dropzone/>
           </label>
 
           <div className="buttonRow">

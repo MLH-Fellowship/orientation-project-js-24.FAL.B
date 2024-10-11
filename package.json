@@ -9,8 +9,12 @@
     "axios": "^1.7.7",
     "eslint": "^8.40.0",
     "eslint-plugin-react": "^7.32.2",
-    "react": "^18.3.1",
+
+    "husky": "^9.1.6",
+    "react": "^18.2.0",
+
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.6",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.0"
   },
@@ -44,11 +48,6 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.8.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^13.0.0",
     "prettier": "2.8.8"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
   }
 }

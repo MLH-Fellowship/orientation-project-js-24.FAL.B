@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
-import AddSkillForm from "./components/skills/AddSkillForm";
-import SkillView from "./components/skills/SkillView";
-import SkillEditPage from "./components/skills/SkillEditPage";
+import User from "./components/User/page";
+import EducationEditPage from "./components/education/EducationEditPage";
 import EducationForm from "./components/education/EducationForm";
 import EducationView from "./components/education/EducationView";
-import EducationEditPage from "./components/education/EducationEditPage";
-import ExperienceForm from "./components/experience/ExperienceForm";
-import ViewExperience from "./components/experience/ViewExperience";
-import User from "./components/User/page";
+
+import AddSkillForm from "./components/skills/AddSkillForm";
+import SkillEditPage from "./components/skills/SkillEditPage";
+import SkillView from "./components/skills/SkillView";
+
 
 function App() {
   const [showEducationForm, setShowEducationForm] = useState(false);
