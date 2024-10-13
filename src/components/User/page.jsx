@@ -15,7 +15,7 @@ const User = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // handle form submission here
-    console.log(userInfo);
+
     setIsOpen(false);
   };
 

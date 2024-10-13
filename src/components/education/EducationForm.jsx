@@ -32,11 +32,9 @@ const EducationForm = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         alert("Education successfully added!");
       })
       .catch((error) => {
-        console.log(error);
         alert("Error: Education not added :(");
       });
   };
@@ -95,8 +93,7 @@ const EducationForm = () => {
           </label>
           <label>
             <h2>Logo</h2>
-              <Dropzone/>
-            
+            <Dropzone />
           </label>
 
           <button onSubmit={handleSubmit}>Submit Education</button>

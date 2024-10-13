@@ -27,7 +27,6 @@ function AddSkillForm({ onSubmit }) {
       const result = await response.json();
 
       if (response.ok) {
-        console.log("Skill added successfully");
         onSubmit && onSubmit();
       } else {
         console.error(`Error adding skill: ${result.message}`);

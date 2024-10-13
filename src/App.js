@@ -41,8 +41,6 @@ function App() {
       );
       setExperiences(updatedExperiences);
       setActiveTab("view");
-
-      console.log({ experiences });
     },
     [experiences]
   );
@@ -108,7 +106,6 @@ function App() {
     ),
   };
 
-  console.log({ experiences });
   return (
     <div className="App">
       <h1>Resume Builder</h1>
