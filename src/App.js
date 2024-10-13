@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { useCallback } from "react";
 import EditExperienceForm from "./components/experience/EditExperienceForm";
-import User from "./components/user-section/page";
+import User from "./components/User/page";
 import EducationEditPage from "./components/education/EducationEditPage";
 import EducationForm from "./components/education/EducationForm";
 import EducationView from "./components/education/EducationView";
