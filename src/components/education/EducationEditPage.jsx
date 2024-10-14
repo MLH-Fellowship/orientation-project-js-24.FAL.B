@@ -16,7 +16,6 @@ function EducationEditPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("EducationEditPage mounted");
     fetchEducations();
   }, []);
 
@@ -24,7 +23,6 @@ function EducationEditPage() {
     setIsLoading(true);
     setError(null);
     try {
-      console.log("Fetching educations...");
       const response = await fetch("http://127.0.0.1:5000/resume/education", {
         method: "GET",
         headers: {
@@ -32,18 +30,16 @@ function EducationEditPage() {
         },
         mode: "cors",
       });
-      console.log("Response status:", response.status);
-      console.log("Response headers:", response.headers);
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Fetched educations:", data);
+
         setEducations(data);
       } else {
         const errorText = await response.text();
         console.error(
           "Failed to fetch educations. Server response:",
-          errorText,
+          errorText
         );
         setError(`Failed to fetch educations. Server response: ${errorText}`);
       }
@@ -56,7 +52,6 @@ function EducationEditPage() {
   };
 
   const handleSelectEducation = (education) => {
-    console.log("Selected education:", education);
     setSelectedEducation(education);
     setFormData(education);
   };
@@ -74,7 +69,6 @@ function EducationEditPage() {
     setIsLoading(true);
     setError(null);
     try {
-      console.log("Updating education:", formData);
       const response = await fetch(
         `http://127.0.0.1:5000/resume/education?index=${selectedEducation.id}`,
         {
@@ -83,10 +77,9 @@ function EducationEditPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-        },
+        }
       );
       if (response.ok) {
-        console.log("Education updated successfully");
         alert("Education updated successfully!");
         await fetchEducations();
         setSelectedEducation(null);
@@ -94,7 +87,7 @@ function EducationEditPage() {
         const errorText = await response.text();
         console.error(
           "Failed to update education. Server response:",
-          errorText,
+          errorText
         );
         setError(`Failed to update education. Server response: ${errorText}`);
       }

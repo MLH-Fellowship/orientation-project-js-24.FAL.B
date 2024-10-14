@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
+import { useCallback } from "react";
+import EditExperienceForm from "./components/experience/EditExperienceForm";
 import User from "./components/User/page";
 import EducationEditPage from "./components/education/EducationEditPage";
 import EducationForm from "./components/education/EducationForm";
@@ -8,7 +10,8 @@ import EducationView from "./components/education/EducationView";
 import AddSkillForm from "./components/skills/AddSkillForm";
 import SkillEditPage from "./components/skills/SkillEditPage";
 import SkillView from "./components/skills/SkillView";
-
+import ExperienceForm from "./components/experience/ExperienceForm";
+import ViewExperience from "./components/experience/ViewExperience";
 
 function App() {
   const [showEducationForm, setShowEducationForm] = useState(false);
@@ -18,127 +21,158 @@ function App() {
   const [showSkillEditPage, setShowSkillEditPage] = useState(false);
   const [skills, setSkills] = useState([]);
   const [experiences, setExperiences] = useState([]);
-  const [showExperienceForm, setShowExperienceForm] = useState(false);
-
-  const handleAddExperience = () => {
-    setShowExperienceForm(true);
-  };
+  const [activeTab, setActiveTab] = useState("");
 
   const handleSubmitExperience = (experienceData) => {
     setExperiences([...experiences, experienceData]);
-    setShowExperienceForm(false);
+    setActiveTab("view");
   };
 
   const handleCancel = () => {
-    setShowExperienceForm(false);
+    setActiveTab("view");
   };
-   
-    const handleAddSkillClick = () => {
-      setShowAddSkillForm(!showAddSkillForm);
-    };
 
-    const handleFormSubmit = (newSkill) => {
-      setSkills([...skills, newSkill]);
-      setShowAddSkillForm(false);
-    };
+  const [selectedExperience, setSelectedExperience] = useState(null);
 
-    const toggleSkillEditPage = () => {
-      setShowSkillEditPage(!showSkillEditPage);
-    };
+  const handleEdit = useCallback(
+    (newItem) => {
+      const updatedExperiences = experiences.map((experience) =>
+        experience.id === newItem.id ? newItem : experience
+      );
+      setExperiences(updatedExperiences);
+      setActiveTab("view");
+    },
+    [experiences]
+  );
 
-    const handleSkillUpdate = (updatedSkills) => {
-      setSkills(updatedSkills);
-      setShowSkillEditPage(false);
-    };
+  const handleAddSkillClick = () => {
+    setShowAddSkillForm(!showAddSkillForm);
+  };
 
-    const handleAddEducationClick = () => {
-      setShowEducationForm(!showEducationForm);
-    };
+  const handleFormSubmit = (newSkill) => {
+    setSkills([...skills, newSkill]);
+    setShowAddSkillForm(false);
+  };
 
-    const handleEducationFormSubmit = (newEducation) => {
-      setEducation([...education, newEducation]);
-      setShowEducationForm(false);
-    };
+  const toggleSkillEditPage = () => {
+    setShowSkillEditPage(!showSkillEditPage);
+  };
 
-    const toggleEducationEditPage = () => {
-      setShowEducationEditPage(!showEducationEditPage);
-    };
+  const handleSkillUpdate = (updatedSkills) => {
+    setSkills(updatedSkills);
+    setShowSkillEditPage(false);
+  };
 
-    const handleEducationUpdate = (updatedEducation) => {
-      setEducation(updatedEducation);
-      setShowEducationEditPage(false);
-    };
+  const handleAddEducationClick = () => {
+    setShowEducationForm(!showEducationForm);
+  };
 
-    return (
-      <div className="App">
-        <h1>Resume Builder</h1>
-        <div className="resumeSection">
-          <h2>User</h2>
-          <p>Add User Information</p>
-          <User />
-          <br></br>
-        </div>
-        <div className="resumeSection">
-          <h2>Experience</h2>
+  const handleEducationFormSubmit = (newEducation) => {
+    setEducation([...education, newEducation]);
+    setShowEducationForm(false);
+  };
 
-          {showExperienceForm ? (
-            <ExperienceForm
-              onSubmit={handleSubmitExperience}
-              onCancel={handleCancel}
-            />
-          ) : (
-            <>
-              <button onClick={handleAddExperience}>Add Experience</button>
-              <ViewExperience experiences={experiences} />
-            </>
-          )}
-        </div>
+  const toggleEducationEditPage = () => {
+    setShowEducationEditPage(!showEducationEditPage);
+  };
 
-        <div className="resumeSection">
-          <h2>Education</h2>
+  const handleEducationUpdate = (updatedEducation) => {
+    setEducation(updatedEducation);
+    setShowEducationEditPage(false);
+  };
 
-          <EducationView education={education} />
-          <div className="button-group">
-            <button onClick={handleAddEducationClick}>
-              {showEducationForm ? "Hide" : "Add Education"}
-            </button>
-            <button onClick={toggleEducationEditPage}>
-              {showEducationEditPage ? "Hide Edit Education" : "Edit Education"}
-            </button>
-          </div>
-          {showEducationForm && (
-            <EducationForm onSubmit={handleEducationFormSubmit} />
-          )}
-          {showEducationEditPage && (
-            <EducationEditPage
-              education={education}
-              onUpdate={handleEducationUpdate}
-            />
-          )}
-        </div>
+  const experienceTabs = {
+    form: (
+      <ExperienceForm
+        onSubmit={handleSubmitExperience}
+        onCancel={handleCancel}
+        setSelectedExperience={setSelectedExperience}
+      />
+    ),
+    view: (
+      <>
+        <ViewExperience
+          experiences={experiences}
+          setSelectedExperience={setSelectedExperience}
+          setActiveTab={setActiveTab}
+        />
+      </>
+    ),
+    edit: (
+      <EditExperienceForm
+        experience={selectedExperience}
+        onSubmit={handleEdit}
+      />
+    ),
+  };
 
-        <div className="resumeSection">
-          <h2>Skills</h2>
-
-          <SkillView skills={skills} />
-          <div className="button-group">
-            <button onClick={handleAddSkillClick}>
-              {showAddSkillForm ? "Hide" : "Add Skill"}
-            </button>
-            <button onClick={toggleSkillEditPage}>
-              {showSkillEditPage ? "Hide Edit Skills" : "Edit Skills"}
-            </button>
-          </div>
-          {showAddSkillForm && <AddSkillForm onSubmit={handleFormSubmit} />}
-          {showSkillEditPage && (
-            <SkillEditPage skills={skills} onUpdate={handleSkillUpdate} />
-          )}
-        </div>
-
-        <br />
-        <button>Export</button>
+  return (
+    <div className="App">
+      <h1>Resume Builder</h1>
+      <div className="resumeSection">
+        <h2>User</h2>
+        <p>Add User Information</p>
+        <User />
+        <br></br>
       </div>
-    );
-  };
+      <div className="resumeSection">
+        <h2>Experience</h2>
+
+        <button
+          onClick={() => setActiveTab("form")}
+          style={{ marginBottom: "20px" }}
+        >
+          Add Experience
+        </button>
+
+        {experienceTabs[activeTab]}
+      </div>
+
+      <div className="resumeSection">
+        <h2>Education</h2>
+
+        <EducationView education={education} />
+        <div className="button-group">
+          <button onClick={handleAddEducationClick}>
+            {showEducationForm ? "Hide" : "Add Education"}
+          </button>
+          <button onClick={toggleEducationEditPage}>
+            {showEducationEditPage ? "Hide Edit Education" : "Edit Education"}
+          </button>
+        </div>
+        {showEducationForm && (
+          <EducationForm onSubmit={handleEducationFormSubmit} />
+        )}
+        {showEducationEditPage && (
+          <EducationEditPage
+            education={education}
+            onUpdate={handleEducationUpdate}
+          />
+        )}
+      </div>
+
+      <div className="resumeSection">
+        <h2>Skills</h2>
+
+        <SkillView skills={skills} />
+        <div className="button-group">
+          <button onClick={handleAddSkillClick}>
+            {showAddSkillForm ? "Hide" : "Add Skill"}
+          </button>
+          <button onClick={toggleSkillEditPage}>
+            {showSkillEditPage ? "Hide Edit Skills" : "Edit Skills"}
+          </button>
+        </div>
+        {showAddSkillForm && <AddSkillForm onSubmit={handleFormSubmit} />}
+        {showSkillEditPage && (
+          <SkillEditPage skills={skills} onUpdate={handleSkillUpdate} />
+        )}
+      </div>
+
+      <br />
+      <button>Export</button>
+    </div>
+  );
+}
 
 export default App;

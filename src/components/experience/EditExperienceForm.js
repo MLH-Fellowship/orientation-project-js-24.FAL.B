@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { v4 as uuid } from "uuid";
 
-function ExperienceForm({ onSubmit, onCancel }) {
+function EditExperienceForm({ experience, onSubmit, onCancel }) {
   const [formData, setFormData] = useState({
-    title: "",
-    company: "",
-    start_date: "",
-    end_date: "",
-    description: "",
-    logo: "",
-    isCurrent: false,
+    title: experience.title ?? "",
+    company: experience.company ?? "",
+    start_date: experience.start_date ?? "",
+    end_date: experience.end_date ?? "",
+    description: experience.description ?? "",
+    logo: experience.logo ?? "",
+    isCurrent: experience.isCurrent ?? false,
   });
 
   const [errors, setErrors] = useState({});
@@ -61,7 +60,7 @@ function ExperienceForm({ onSubmit, onCancel }) {
       end_date: formData.isCurrent ? "Present" : formData.end_date,
       description: formData.description,
       logo: formData.logo,
-      id: uuid(),
+      id: experience.id,
     };
 
     onSubmit(experienceData);
@@ -160,4 +159,4 @@ function ExperienceForm({ onSubmit, onCancel }) {
   );
 }
 
-export default ExperienceForm;
+export default EditExperienceForm;
