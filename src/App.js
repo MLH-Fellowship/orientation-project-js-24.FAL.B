@@ -81,6 +81,14 @@ function App() {
     setShowEducationEditPage(false);
   };
 
+  const handleDelete = useCallback(
+    (id) => {
+      const filtered = () =>
+        experiences.filter((experience) => experience.id !== id);
+      setExperiences(filtered);
+    },
+    [experiences]
+  );
   const experienceTabs = {
     form: (
       <ExperienceForm
@@ -95,6 +103,7 @@ function App() {
           experiences={experiences}
           setSelectedExperience={setSelectedExperience}
           setActiveTab={setActiveTab}
+          onDelete={handleDelete}
         />
       </>
     ),
